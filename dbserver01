@@ -3,7 +3,7 @@
 #If we need to check who is running the script, normal user or super user, do as below
 #If the user is not super user then the script throws error otherwise it proceeds further
 USERID=$(id -u)
-#We need to store all the logs in a file in any programming/scripting so create a log file 
+#We need to store all the logs in a file in any programming/scripting so creating a log file 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0|cut -d "." -f1)
 LOG_FILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
@@ -11,6 +11,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+echo "Please enter your root password:"
+read PASSWORD
 
 if [ $USERID -ne 0 ]
 then 
@@ -41,6 +43,12 @@ validate $? "Enabling of mysql server"
 systemctl start mysqld &>>$LOG_FILE
 validate $? "Starting of mysql server"
 
-
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
-validate $? "Setting up root password for mysql server"
+#If we run this script this command gets fail so we need to make it to not fail and it's not idempotent in nature, so we need to make it idempotent 
+mysql -hdb.expensesnote.site  -uroot -p$PASSWORD -e "show databases;"
+if [ $? -eq 0 ]
+then    
+    echo -e "Mysql root password is already set...$Y SKIPPING $N";
+else
+    mysql_secure_installation --set-root-pass $PASSWORD &>>$LOG_FILE
+    validate $? "Setting up root password for mysql server"
+fi
