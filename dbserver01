@@ -21,7 +21,7 @@ else
 fi
 
 systemctl enable mysqld
-if [$? -eq 0 ]
+if [ $? -eq 0 ]
 then
     echo "Enabling of mysql is....SUCCESS"
 else
@@ -30,7 +30,7 @@ else
 fi
 
 systemctl start mysqld
-if [$? -eq 0 ]
+if [ $? -eq 0 ]
 then
     echo "starting of mysql is....SUCCESS"
 else
