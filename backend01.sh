@@ -60,7 +60,7 @@ npm install &>>$LOG_FILE
 validate $? "Installing nodejs dependencies is"
 
 cp /home/ec2-user/expensesshellscripting/backend.service /etc/systemd/system/backend.service >>$LOG_FILE
-validate $? "copying of file is"
+validate $? "configuring backend to db connection is"
 
 systemctl daemon-reload &>>$LOG_FILE
 validate $? "daemon reload is"
