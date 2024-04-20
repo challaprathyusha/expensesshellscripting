@@ -10,5 +10,5 @@ else
    echo "You are super user"
 fi
 
-dnf install mysql-server -y
+dnf install mysql-serverere -y
 echo "exit status of command is: $?"
