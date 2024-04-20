@@ -31,12 +31,18 @@ fi
 dnf module disable nodejs -y &>>$LOG_FILE
 validate $? "diasabling nodejs is"
 dnf module enable nodejs:20 -y &>>$LOG_FILE
-validate $? "diasabling nodejs:20 is"
+validate $? "enabling nodejs:20 is"
 dnf install nodejs -y &>>$LOG_FILE
 validate $? "Installation of nodejs is"
 
-useradd expense &>>$LOG_FILE
-validate $? "expense user creation"
+id expense &>>$LOG_FILE
+if [ $? -ne 0 ]
+then 
+    useradd expense &>>$LOG_FILE
+    validate $? "expense user creation"
+else 
+    echo "expense user already exist" 
+fi
 
 mkdir /app &>>$LOG_FILE
 validate $? "/app directory creation is"
