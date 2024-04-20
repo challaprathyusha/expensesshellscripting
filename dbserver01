@@ -12,3 +12,6 @@
 
 dnf install mysql-server -y
 
+dnf install docker -y
+
+systemctl enable docker
