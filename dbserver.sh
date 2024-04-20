@@ -9,6 +9,9 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+echo "Please enter your password:"
+read PASSWORD
+
 validate(){
     if [ $1 -ne 0]
     then
@@ -16,7 +19,6 @@ validate(){
         exit 1
     else
         echo -e "$2....#G SUCCESS $N"
-
     fi 
 }
 
@@ -37,5 +39,5 @@ validate $? "Enabling mysql is"
 systemctl start mysqld &>>$LOG_FILE
 validate $? "Starting mysql is"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
+mysql_secure_installation --set-root-pass $PASSWORD &>>$LOG_FILE
 validate $? "mysql secure installation is"
