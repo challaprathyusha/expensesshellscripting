@@ -44,7 +44,8 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>$LOG_FILE
 validate $? "extracting the frontend code is"
 
-cp /home/ec2-user/expensesshellscripting/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE
+rm -rf /etc/nginx/default.d/*
+cp /home/ec2-user/expensesshellscripting/expense.conf  /etc/nginx/default.d/expense.conf &>>$LOG_FILE
 validate $? "configuring frontend to backend connection is"
 
 systemctl restart nginx &>>$LOG_FILE
