@@ -17,7 +17,7 @@ validate(){
     else
         echo -e "$2....#G SUCCESS $N"
 
-   fi 
+    fi 
 }
 
 if [ $USERID -ne 0 ]
