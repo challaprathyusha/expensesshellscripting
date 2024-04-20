@@ -11,38 +11,27 @@ else
    echo "You are super user"
 fi
 #If the exit status of the command is 0 then the script proceeds otherwise it exits
-dnf install mysql-server -y
-if [ $? -eq 0 ]
+#In scripting if any block of code is repeating then we can put it in function and call it through the function name
+
+validate(){
+if [ $1 -eq 0 ]
 then
-  echo "Installation of mysql...SUCCESS"
+  echo "$2...SUCCESS"
 else
-  echo "Installation of mysql....FAILURE"
+  echo "$2....FAILURE"
   exit 1
 fi
 
+}
+dnf install mysql-server -y
+validate $? "Installation of mysql server"
+
 systemctl enable mysqld
-if [ $? -eq 0 ]
-then
-    echo "Enabling of mysql is....SUCCESS"
-else
-    echo "Enabling of mysql is....FAILURE"
-    exit 1
-fi
+validate $? "Enabling of mysql server"
 
 systemctl start mysqld
-if [ $? -eq 0 ]
-then
-    echo "starting of mysql is....SUCCESS"
-else
-    echo "starting of mysql is....FAILURE"
-    exit 1
-fi
+validate $? "Starting of mysql server"
+
 
 mysql_secure_installation --set-root-pass ExpenseApp@1
-if [ $? -eq 0 ]
-then
-    echo "mysql root password setup....SUCCESS"
-else
-    echo "mysql root password setup.....FAILURE"
-    exit 1
-fi
+validate $? "Setting up root password for mysql server"
