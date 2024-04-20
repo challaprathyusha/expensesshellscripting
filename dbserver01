@@ -39,7 +39,7 @@ else
 fi
 
 mysql_secure_installation --set-root-pass ExpenseApp@1
-if [$? -eq 0 ]
+if [ $? -eq 0 ]
 then
     echo "mysql root password setup....SUCCESS"
 else
