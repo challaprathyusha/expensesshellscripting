@@ -29,8 +29,10 @@ fi
 
 dnf install nginx -y &>>$LOG_FILE
 validate $? "Installation of nginx is"
+
 systemctl enable nginx &>>$LOG_FILE
 validate $? "enabling nginx is"
+
 systemctl start nginx &>>$LOG_FILE
 validate $? "starting nginx is"
 
