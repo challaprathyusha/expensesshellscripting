@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #If we need to check who is running the script, normal user or super user, do as below
-USERID=(id -u)
+USERID=$(id -u)
 if [ $USERID -ne 0 ]
 then 
    echo "Please run the script using root privilages"
