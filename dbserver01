@@ -11,4 +11,4 @@ else
 fi
 
 dnf install mysql-server -y
-echo $?
+echo "exit status of command is: $?"
