@@ -10,4 +10,5 @@ else
    echo "You are super user"
 fi
 
-dnf install mysql-servervxv -y
+dnf install mysql-server -y
+echo $?
