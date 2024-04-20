@@ -7,8 +7,7 @@ M="\e[35m"
 C="\e[36m"
 W="\e[34m"
 N="\e[0m"
-echo "Please enter your root password:"
-read PASSWORD
+
 
 if [ $USERID -ne 0 ]
 then 
