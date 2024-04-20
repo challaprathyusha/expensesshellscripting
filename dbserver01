@@ -43,12 +43,13 @@ validate $? "Enabling of mysql server"
 systemctl start mysqld &>>$LOG_FILE
 validate $? "Starting of mysql server"
 
-#If we run this script this command gets fail so we need to make it to not fail and it's not idempotent in nature, so we need to make it idempotent 
+#Bydesfault shell scripting is not idempotent in nature, so it's users responsibility to make it idempotent manually
 mysql -hdb.expensesnote.site  -uroot -p$PASSWORD -e "show databases;" &>>$LOG_FILE
 if [ $? -eq 0 ]
 then    
     echo -e "Mysql root password is already set...$Y SKIPPING $N";
 else
+#This command is not idempotent in nature, so we need to make it idempotent
     mysql_secure_installation --set-root-pass $PASSWORD &>>$LOG_FILE
     validate $? "Setting up root password for mysql server"
 fi
