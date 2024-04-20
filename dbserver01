@@ -44,7 +44,7 @@ systemctl start mysqld &>>$LOG_FILE
 validate $? "Starting of mysql server"
 
 #If we run this script this command gets fail so we need to make it to not fail and it's not idempotent in nature, so we need to make it idempotent 
-mysql -hdb.expensesnote.site  -uroot -p$PASSWORD -e "show databases;"
+mysql -hdb.expensesnote.site  -uroot -p$PASSWORD -e "show databases;" &>>$LOG_FILE
 if [ $? -eq 0 ]
 then    
     echo -e "Mysql root password is already set...$Y SKIPPING $N";
