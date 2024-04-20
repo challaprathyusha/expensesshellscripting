@@ -10,8 +10,4 @@ else
    echo "You are super user"
 fi
 
-dnf install mysql-server -y
-
-dnf install docker -y
-
-systemctl enable docker
+dnf install mysql-server2 -y
