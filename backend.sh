@@ -14,7 +14,7 @@ dnf module enable nodejs:20 -y &>>$LOG_FILE
 dnf install nodejs -y &>>$LOG_FILE
 #validate $? "Installation of nodejs is"
 
-useradd expense &>>$LOG_FILE
+id expense &>>$LOG_FILE
 #validate $? "expense user creation"
 
 mkdir /app &>>$LOG_FILE
