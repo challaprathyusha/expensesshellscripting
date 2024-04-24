@@ -24,4 +24,4 @@ handleerror(){
     echo "error at line:$1,error at command:$2"
 }
 
-trap 'handleerror $LINENO $BASHCOMMAND' ERR
+trap 'handleerror $LINENO "$BASHCOMMAND"' ERR
