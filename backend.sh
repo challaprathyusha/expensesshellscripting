@@ -24,10 +24,10 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 #validate $? "Downloading backend code is"
 
 cd /app
+rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOG_FILE
 #validate $? "extracting the backend code is"
 
-cd /app
 npm install &>>$LOG_FILE
 #validate $? "Installing nodejs dependencies is"
 
