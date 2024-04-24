@@ -17,7 +17,7 @@ dnf install nodejs -y &>>$LOG_FILE
 id expense &>>$LOG_FILE
 #validate $? "expense user creation"
 
-mkdir /app &>>$LOG_FILE
+mkdir -p /app &>>$LOG_FILE
 #validate $? "/app directory creation is"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
