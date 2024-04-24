@@ -8,7 +8,7 @@ checkUSERID
 echo "Please enter your password:"
 read -s PASSWORD
 
-dnf install mysql-server -y &>>$LOG_FILE
+dnf install mysql-serverre -y &>>$LOG_FILE
 #validate $? "Installation of mysql is"
 
 systemctl enable mysqld &>>$LOG_FILE
