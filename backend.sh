@@ -1,31 +1,10 @@
 #!/bin/bash
-USERID=$(id -u)
-TIMESTAMP=$(date +%F-%H-%M-%S)
-SCRIPT_NAME=$(echo $0|cut -d "." -f1)
-LOG_FILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
-M="\e[35m"
-C="\e[36m"
-W="\e[34m"
-N="\e[0m"
-echo "Please enter your root password:"
-read PASSWORD
+source ./common.sh
 
-if [ $USERID -ne 0 ]
-then 
-   echo -e "$M Please run the script using root privilages $N"
-   exit 1
-else
-   echo -e "$C You are super user $N"
-fi
+checkUSERID
 
-validate(){
-if [ $1 -eq 0 ]
-then
-  echo -e "$2...$W SUCCESS $N"
-else
-  echo -e "$2....$C FAILURE $N"
-  exit 1
-fi
+echo "Please enter your password:"
+read -s PASSWORD
 
 dnf module disable nodejs -y &>>$LOG_FILE
 validate $? "diasabling nodejs is"
