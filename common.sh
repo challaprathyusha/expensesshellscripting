@@ -18,3 +18,10 @@ else
     echo "You are super user"
 fi
 }
+
+handleerror(){
+
+    echo "error at line:$1,error at command:$2"
+}
+
+trap 'handleerror $LINENO $BASHCOMMAND' ERR

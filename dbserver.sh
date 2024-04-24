@@ -8,6 +8,7 @@ checkUSERID
 echo "Please enter your password:"
 read -s PASSWORD
 
+
 dnf install mysql-serverre -y &>>$LOG_FILE
 #validate $? "Installation of mysql is"
 
